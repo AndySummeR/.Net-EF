@@ -22,7 +22,12 @@ namespace ContosoUniversityWebApplication.Controllers
         public ActionResult Index(int? id, int? courseID)
         {
             var viewModel = new InstructorIndexData();
-            viewModel.Instructors = db.Instructors.Include(i => i.OfficeAssignment).Include(i => i.Courses.Select(c => c.Department)).OrderBy(i => i.LastName);
+
+            viewModel.Instructors = db.Instructors
+                .Include(i => i.OfficeAssignment)
+                .Include(i => i.Courses.Select(c => c.Department))
+                .OrderBy(i => i.LastName);
+
             if (id != null)
             {
                 ViewBag.InstructorID = id.Value;
@@ -58,23 +63,33 @@ namespace ContosoUniversityWebApplication.Controllers
         // GET: Instructor/Create
         public ActionResult Create()
         {
+            var instructor = new Instructor();
+            instructor.Courses = new List<Course>();
+            PopulateAssignedCourseData(instructor);
             return View();
         }
 
         // POST: Instructor/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [HttpPost] [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "LastName,FirstMidName,HireDate,OfficeAssignment")]Instructor instructor, string[] selectedCourses)
         {
-            try
+            if (selectedCourses != null)
             {
-                // TODO: Add insert logic here
-
+                instructor.Courses = new List<Course>();
+                foreach (var course in selectedCourses)
+                {
+                    var courseToAdd = db.Courses.Find(int.Parse(course));
+                    instructor.Courses.Add(courseToAdd);
+                }
+            }
+            if (ModelState.IsValid)
+            {
+                db.Instructors.Add(instructor);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            PopulateAssignedCourseData(instructor);
+            return View(instructor);
         }
 
         // GET: Instructor/Edit/5
@@ -197,19 +212,26 @@ namespace ContosoUniversityWebApplication.Controllers
         }
 
         // POST: Instructor/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            Instructor instructor = db.Instructors
+                .Include(i => i.OfficeAssignment)
+                .Where(i => i.ID == id)
+                .Single();
 
-                return RedirectToAction("Index");
-            }
-            catch
+            instructor.OfficeAssignment = null;
+            db.Instructors.Remove(instructor);
+            var department = db.Departments
+                .Where(d => d.InstructorID == id)
+                .SingleOrDefault();
+            if (department != null)
             {
-                return View();
+                department.InstructorID = null;
             }
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

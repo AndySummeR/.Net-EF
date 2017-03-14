@@ -15,6 +15,7 @@
         <th>First Name</th>
         <th>Hire Date</th>
         <th>Office</th>
+        <th>Courses</th>
         <th></th>
     </tr>
     @foreach (var item in Model.Instructors)
@@ -41,13 +42,24 @@
                 }
             </td>
             <td>
+                @{
+                    foreach (var course in item.Courses)
+                    {
+                        @course.CourseID @:  @course.Title
+                        <br />
+                    }
+                }
+            </td>
+
+
+            <td>
                 @Html.ActionLink("Select", "Index", new { id = item.ID }) |
                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.ID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
             </td>
         </tr>
-    }
+                    }
 </table>
 
 @if (Model.Courses != null)
@@ -102,7 +114,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Grade)
                 </td>
-            </tr>        
+            </tr>
         }
     </table>
 } 

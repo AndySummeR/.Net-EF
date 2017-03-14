@@ -41,7 +41,12 @@ namespace ContosoUniversityWebApplication.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            modelBuilder.Entity<Course>().HasMany(c => c.Instructors).WithMany(i => i.Courses).Map(t => t.MapLeftKey("CourseID").MapRightKey("InstructorID").ToTable("CourseInstructor"));
+            modelBuilder.Entity<Course>()
+                .HasMany(c => c.Instructors).WithMany(i => i.Courses)
+                .Map(t => t.MapLeftKey("CourseID").MapRightKey("InstructorID")
+                .ToTable("CourseInstructor"));
+            //This code instructs Entity Framework to use stored procedures for insert, update, and delete operations on the Department entity. 
+            modelBuilder.Entity<Department>().MapToStoredProcedures();
         }
     }
 }

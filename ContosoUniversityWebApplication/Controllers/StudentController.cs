@@ -45,8 +45,8 @@ namespace ContosoUniversityWebApplication.Controllers
             {
                 searchString = currentFilter;
             }
-            ViewBag.CurrentFilter = searchString;
 
+            ViewBag.CurrentFilter = searchString;
 
             var students = from s in db.Students
                            select s;
