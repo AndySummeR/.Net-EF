@@ -29,8 +29,11 @@ namespace ContosoUniversityWebApplication.Models
         public int? InstructorID { get; set; }
 
         //Tracking property for the Optimistic Concurrency
-        [Timestamp]  
+        [Timestamp]
         //The Timestamp attribute specifies that this column will be included in the Where clause of Update and Delete commands sent to the database.
+        //A row version type (also known as a sequence number) is a binary number that is guaranteed to be unique in the database. It does not represent an actual time. 
+        //Row version data is not visually meaningful. 
+        //Therefore, when the TimestampAttribute attribute is used with a Dynamic Data field, the column is not displayed unless the ScaffoldColumnAttribute attribute of the column is explicitly set to true.
         public byte[] RowVersion { get; set; }
 
         public virtual Instructor Administrator { get; set; }

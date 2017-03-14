@@ -16,6 +16,7 @@ namespace ContosoUniversityWebApplication
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             DbInterception.Add(new SchoolInterceptorTransientErrors());
             DbInterception.Add(new SchoolInterceptorLogging());
+            log4net.Config.XmlConfigurator.Configure();
         }
     }
 }

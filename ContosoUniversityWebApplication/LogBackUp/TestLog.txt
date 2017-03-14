@@ -1,0 +1,5 @@
+DEBUG 2017-03-14 14:08:10,832  5744ms DepartmentController   MoveNext           - Debug message
+INFO  2017-03-14 14:08:10,849  5761ms DepartmentController   MoveNext           - Info message
+WARN  2017-03-14 14:08:10,849  5761ms DepartmentController   MoveNext           - Warn message
+ERROR 2017-03-14 14:08:10,850  5762ms DepartmentController   MoveNext           - Error message
+FATAL 2017-03-14 14:08:10,850  5762ms DepartmentController   MoveNext           - Fatal message

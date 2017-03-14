@@ -27,6 +27,7 @@ namespace ContosoUniversityWebApplication.DAL
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<OfficeAssignment> OfficeAssignments { get; set; }
+        public DbSet<Person> People { get; set; }
 
         /*
          The new statement in the OnModelCreating method configures the many-to-many join table:
