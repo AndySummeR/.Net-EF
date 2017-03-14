@@ -47,6 +47,8 @@ namespace ContosoUniversityWebApplication.DAL
                 .ToTable("CourseInstructor"));
             //This code instructs Entity Framework to use stored procedures for insert, update, and delete operations on the Department entity. 
             modelBuilder.Entity<Department>().MapToStoredProcedures();
+            // Using the fluent API and IsConcurrencyToken method to specify the tracking property
+            modelBuilder.Entity<Department>().Property(p => p.RowVersion).IsConcurrencyToken();
         }
     }
 }

@@ -25,7 +25,13 @@ namespace ContosoUniversityWebApplication.Models
          * By convention, the Entity Framework enables cascade delete for non-nullable foreign keys and for many-to-many relationships. 
          * This can result in circular cascade delete rules, which will cause an exception when you try to add a migration.
          */
+         [Display(Name = "Administrator")]
         public int? InstructorID { get; set; }
+
+        //Tracking property for the Optimistic Concurrency
+        [Timestamp]  
+        //The Timestamp attribute specifies that this column will be included in the Where clause of Update and Delete commands sent to the database.
+        public byte[] RowVersion { get; set; }
 
         public virtual Instructor Administrator { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
