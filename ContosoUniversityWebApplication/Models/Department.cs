@@ -1,10 +1,12 @@
-﻿using System;
+﻿using ContosoUniversityWebApplication.Attribute;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ContosoUniversityWebApplication.Models
 {
+    [Author("Andy", version=1.0)]
     public class Department
     {
         public int DepartmentID { get; set; }
