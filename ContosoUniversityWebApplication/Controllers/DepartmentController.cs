@@ -15,6 +15,7 @@ namespace ContosoUniversityWebApplication.Controllers
     public class DepartmentController : Controller
     {
         private SchoolContext db = new SchoolContext();
+        
 
         private static ILog Log { get; set; }
         ILog log = LogManager.GetLogger(typeof(DepartmentController));

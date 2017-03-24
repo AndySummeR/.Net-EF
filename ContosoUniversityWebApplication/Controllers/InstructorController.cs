@@ -68,7 +68,7 @@ namespace ContosoUniversityWebApplication.Controllers
             PopulateAssignedCourseData(instructor);
             return View();
         }
-
+   
         // POST: Instructor/Create
         [HttpPost] [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "LastName,FirstMidName,HireDate,OfficeAssignment")]Instructor instructor, string[] selectedCourses)

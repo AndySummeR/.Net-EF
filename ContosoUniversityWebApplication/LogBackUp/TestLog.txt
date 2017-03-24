@@ -43,3 +43,8 @@ INFO  2017-03-14 17:43:06,231 28829ms DepartmentController   MoveNext           
 WARN  2017-03-14 17:43:06,231 28829ms DepartmentController   MoveNext           - Warn message
 ERROR 2017-03-14 17:43:06,231 28829ms DepartmentController   MoveNext           - Error message
 FATAL 2017-03-14 17:43:06,231 28829ms DepartmentController   MoveNext           - Fatal message
+DEBUG 2017-03-15 10:43:58,933 27692ms DepartmentController   MoveNext           - Debug message
+INFO  2017-03-15 10:43:59,134 27894ms DepartmentController   MoveNext           - Info message
+WARN  2017-03-15 10:43:59,134 27894ms DepartmentController   MoveNext           - Warn message
+ERROR 2017-03-15 10:43:59,135 27895ms DepartmentController   MoveNext           - Error message
+FATAL 2017-03-15 10:43:59,135 27895ms DepartmentController   MoveNext           - Fatal message
